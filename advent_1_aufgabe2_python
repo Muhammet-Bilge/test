@@ -1,0 +1,32 @@
+check = 0
+max1 = 0
+max2 = 0
+max3 = 0
+
+datName = "\\\\service.local\\dfs\\sml\\Home\\Bilge\\Documents\\JAVA\\advent1.txt"
+
+with open(datName,"r") as advent:
+    for line in advent:
+        if line !='\n':
+            if line[-1:] =='\n':
+                str =line[:-1]
+            else:
+               str =line
+
+            check = check + int (str)
+        else:
+            if check > max1:
+                 max3 = max2
+                 max2 = max1
+                 max1 = check
+                 check = 0
+            if check > max2:
+                 max3 = max2
+                 max2 = check
+                 check = 0
+            if check > max3:
+                 max3 = check
+                 
+            check = 0
+           
+print("max Kalorie",(max1+max2+max3))
