@@ -1,0 +1,19 @@
+check = 0
+max = 0
+datName = "\\\\service.local\\dfs\\sml\\Home\\Bilge\\Documents\\JAVA\\advent1.txt"
+
+with open(datName,"r") as advent:
+    for line in advent:
+        if line !='\n':
+            if line[-1:] =='\n':
+                str =line[:-1]
+            else:
+               str =line
+
+            check = check + int (str)
+        else:
+            if check > max:
+                 max = check
+            check = 0
+           
+print(max)
