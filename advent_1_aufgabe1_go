@@ -1,0 +1,36 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+func main() {
+	check := 0
+	max := 0
+
+	readFile, err := os.Open("advent1.txt")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fileScanner := bufio.NewScanner(readFile)
+
+	for fileScanner.Scan() {
+		str := fileScanner.Text()
+		fmt.Print(str + "  -  ")
+		if str != "" {
+			intcon, _ := strconv.Atoi(str)
+			check = check + intcon
+		} else {
+			if check > max {
+				max = check
+			}
+			check = 0
+		}
+	}
+	readFile.Close()
+	fmt.Println(max)
+}
