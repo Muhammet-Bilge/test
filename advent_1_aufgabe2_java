@@ -1,0 +1,56 @@
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
+
+//import java.io.BufferedReader;
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        String datName = "\\\\service.local\\dfs\\sml\\Home\\Bilge\\Documents\\JAVA\\advent1.txt";
+
+        int elf1 =0;
+        int elf2 =0;
+        int elf3 =0;
+        int check=0;
+
+        String zeile="";
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File(datName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (scan.hasNext()) {
+            zeile = scan.nextLine();
+            if(zeile.isEmpty()){
+                if(check>elf1){
+                    elf3=elf2;
+                    elf2=elf1;
+                    elf1=check;
+                    check=0;
+
+                }
+                if(check>elf2){
+                    elf3=elf2;
+                    elf2=check;
+                    check=0;
+
+                } if(check>elf3)
+                    elf3=check;
+                check=0;
+
+            }else{
+                check = check + Integer.parseInt(zeile);
+
+            }
+
+            }
+        scan.close();
+        System.out.println("Toplam:" +(elf1+elf2+elf3));
+
+    }
+}
